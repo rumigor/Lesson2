@@ -8,7 +8,7 @@ import com.example.lesson2.databinding.FragmentUsersBinding
 import moxy.MvpAppCompatFragment
 import moxy.ktx.moxyPresenter
 
-class UsersFragment : MvpAppCompatFragment(), UsersView, BackButtonListener {
+class UsersFragment : MvpAppCompatFragment(), UsersView {
     companion object {
         fun newInstance() = UsersFragment()
     }
@@ -19,9 +19,9 @@ class UsersFragment : MvpAppCompatFragment(), UsersView, BackButtonListener {
     private var vb: FragmentUsersBinding? = null
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?) =
-        FragmentUsersBinding.inflate(inflater, container, false).also {
-            vb = it
-        }.root
+            FragmentUsersBinding.inflate(inflater, container, false).also {
+                vb = it
+            }.root
 
     override fun onDestroyView() {
         super.onDestroyView()
@@ -38,6 +38,5 @@ class UsersFragment : MvpAppCompatFragment(), UsersView, BackButtonListener {
         adapter?.notifyDataSetChanged()
     }
 
-    override fun backPressed() = presenter.backPressed()
 }
 

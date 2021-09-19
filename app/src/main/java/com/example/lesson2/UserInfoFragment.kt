@@ -8,12 +8,12 @@ import com.example.lesson2.databinding.FragmentUserinfoBinding
 import moxy.MvpAppCompatFragment
 import moxy.ktx.moxyPresenter
 
-class UserInfoFragment : MvpAppCompatFragment(), UserInfoView, BackButtonListener {
+class UserInfoFragment : MvpAppCompatFragment(), UserInfoView {
 
-    private var name : String? = null
+    private var name: String? = null
 
     companion object {
-        fun newInstance(userName: String): UserInfoFragment{
+        fun newInstance(userName: String): UserInfoFragment {
             val userInfoFragment = UserInfoFragment()
             val args = Bundle()
             args.putString("USER_NAME", userName)
@@ -28,14 +28,15 @@ class UserInfoFragment : MvpAppCompatFragment(), UserInfoView, BackButtonListene
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        if (arguments != null){
+        if (arguments != null) {
             name = requireArguments().getString("USER_NAME")
         }
     }
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?) =
-        FragmentUserinfoBinding.inflate(inflater, container, false).also {
-            vb = it
-        }.root
+            FragmentUserinfoBinding.inflate(inflater, container, false).also {
+                vb = it
+            }.root
 
     override fun onDestroyView() {
         super.onDestroyView()
@@ -47,7 +48,5 @@ class UserInfoFragment : MvpAppCompatFragment(), UserInfoView, BackButtonListene
         vb?.userName?.text = name
     }
 
-
-    override fun backPressed() = presenter.backPressed()
 }
 
